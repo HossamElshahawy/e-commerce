@@ -2,10 +2,10 @@
     <!-- Sidebar user panel (optional) -->
     <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
-            <img src="dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
+            <img src="{{asset('admin/dist/img/user2-160x160.jpg')}}" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-            <a href="#" class="d-block">Alexander Pierce</a>
+            <a href="#" class="d-block">{{auth()->user()->name}}</a>
         </div>
     </div>
 
@@ -32,6 +32,54 @@
                     <p>Dashboard</p>
                 </a>
             </li>
+
+            {{--Category--}}
+            <li class="nav-item">
+                <a href="#" class="nav-link">
+                    <i class="nav-icon fas fa-table"></i>
+                    <p>
+                        Category
+                        <i class="fas fa-angle-left right"></i>
+                    </p>
+                </a>
+                <ul class="nav nav-treeview">
+                    <li class="nav-item">
+                        <a href="{{route('category.index')}}" class="nav-link">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Show</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{route('category.create')}}" class="nav-link">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Add</p>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+
+            {{--Brand--}}
+
+            <li class="nav-item">
+                <a href="{{route('admin.brand')}}" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Brand</p>
+                </a>
+            </li>
+
+            {{--logout--}}
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                    <i class="fas fa-sign-out-alt"></i> {{ __('Logout') }}
+                </a>
+
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                    @csrf
+                </form>
+            </li>
+
+
+
 
 
         </ul>
