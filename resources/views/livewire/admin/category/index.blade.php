@@ -69,7 +69,11 @@
                     </td>
 
                     <td>
-                        <span class="badge badge-success">{{$category->status}}</span>
+                        @if($category->status == 'active')
+                            <span class="badge badge-success">{{$category->status}}</span>
+                        @else
+                            <span class="badge badge-danger">{{$category->status}}</span>
+                        @endif
                     </td>
                     <td class="project-actions text-right">
                         <a class="btn btn-info btn-sm" href="{{route('category.edit',$category->id)}}">

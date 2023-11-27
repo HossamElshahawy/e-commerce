@@ -1,0 +1,5 @@
+<div>
+
+    {{$wishListCount}}
+
+</div>

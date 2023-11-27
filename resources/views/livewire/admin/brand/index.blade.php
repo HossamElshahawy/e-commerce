@@ -20,6 +20,9 @@
                 <th style="width: 20%">
                     Name
                 </th>
+                <th style="width: 20%">
+                    Category
+                </th>
                 <th style="width: 30%">
                     Status
                 </th>
@@ -38,6 +41,14 @@
                         <a>
                             {{$brand->name}}
                         </a>
+                    </td>
+                    <td>
+                        @if($brand->category)
+                            {{$brand->category->name}}
+                        @else
+                            No Category
+                        @endif
+
                     </td>
 
                     <td>

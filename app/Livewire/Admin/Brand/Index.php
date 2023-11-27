@@ -3,6 +3,7 @@
 namespace App\Livewire\Admin\Brand;
 
 use App\Models\Brand;
+use App\Models\Category;
 use Illuminate\Support\Str;
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -10,13 +11,14 @@ use Livewire\WithPagination;
 class Index extends Component
 {
     use WithPagination;
-    public $name, $slug, $status ='active', $brand_id;
+    public $name, $slug, $brand_id, $category_id, $status ='active';
 
     public function rules(){
         return [
             'name'=>'required|string',
             'slug'=>'required|string',
-            'status'=>'nullable'
+            'status'=>'nullable',
+            'category_id' => 'required|integer'
         ];
     }
 
@@ -25,6 +27,7 @@ class Index extends Component
         $this->slug = Null;
         $this->status = Null;
         $this->brand_id = Null;
+        $this->category_id = Null;
     }
 
     public function editBrand($brand_id){
@@ -33,6 +36,7 @@ class Index extends Component
         $this->name = $brand->name;
         $this->slug = $brand->slug;
         $this->status = $brand->status;
+        $this->category_id = $brand->category_id;
 
     }
 
@@ -41,7 +45,8 @@ class Index extends Component
         Brand::create([
             'name' => $this->name,
             'slug' => Str::slug($this->slug),
-            'status'=>$this->status
+            'status'=>$this->status,
+            'category_id' => $this->category_id,
         ]);
         session()->flash('message','Brand Created Successfully');
         $this->dispatch('close');
@@ -53,7 +58,8 @@ class Index extends Component
         Brand::findOrFail($this->brand_id)->update([
             'name' => $this->name,
             'slug' => Str::slug($this->slug),
-            'status'=>$this->status
+            'status'=>$this->status,
+            'category_id' => $this->category_id,
         ]);
         session()->flash('message','Brand Updated Successfully');
         $this->dispatch('close');
@@ -86,7 +92,8 @@ class Index extends Component
     public function render()
     {
         $brands = Brand::paginate(10);
-        return view('livewire.admin.brand.index',compact('brands'))
+        $categories = Category::where('status','active')->get();
+        return view('livewire.admin.brand.index',compact('brands','categories'))
                             ->extends('admin.layout.main')
                             ->section('content');
     }

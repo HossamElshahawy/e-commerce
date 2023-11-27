@@ -74,6 +74,22 @@
                 </a>
             </li>
 
+            {{--Color--}}
+            <li class="nav-item">
+                <a href="{{route('color.index')}}" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Color</p>
+                </a>
+            </li>
+
+            {{--Slider--}}
+            <li class="nav-item">
+                <a href="{{route('slider.index')}}" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Home Slider</p>
+                </a>
+            </li>
+
             {{--logout--}}
             <li class="nav-item">
                 <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">

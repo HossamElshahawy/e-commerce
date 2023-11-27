@@ -50,8 +50,8 @@
                         <div class="form-group">
                             <label for="status">Status</label>
                             <select name="status"  class="form-control">
-                                <option value="active">Active</option>
-                                <option value="inactive">inActive</option>
+                                <option value="active" @if($category->status  == 'active') selected @endif>Active</option>
+                                <option value="inactive" @if($category->status  == 'inactive') selected @endif>inActive</option>
                             </select>
                             @error('status') <em class="alert-danger">{{$message}}</em> @enderror
 

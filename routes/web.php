@@ -17,7 +17,15 @@ Route::get('/home', function () {
     return view('welcome');
 });
 
-Auth::routes();
+
+route::get('home',[\App\Http\Controllers\User\IndexController::class,'index']);
+
+//route::get('shop',[\App\Http\Controllers\User\IndexController::class,'allProducts']);
+
+route::get('category/{category_slug}',[\App\Http\Controllers\User\IndexController::class,'productsRelatedToCategory'])->name('user.category');
+route::get('category/{category_slug}/{product_slug}',[\App\Http\Controllers\User\IndexController::class,'productSinglePage']);
+
+route::get('wishlist',[\App\Http\Controllers\User\WishlistController::class,'index']);
 
 
 Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function (){
@@ -45,6 +53,41 @@ Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function (){
         // image delete
         Route::get('/product/image/delete/{image}',  'deleteProductImage')->name('productImage.delete');
 
+        //product color Quantity
+        Route::post('/product-color/{product_color_id}',  'updatedProductColorQty');
+
+        //product delete Color
+        Route::get('/product-color/{product_color_id}/delete',  'deletedProductColorQty');
+
+    });
+
+    //Colors
+    Route::controller(\App\Http\Controllers\Admin\ColorController::class)->group(function (){
+        Route::get('/colors', 'index')->name('color.index');
+        Route::get('/colors/create', 'create')->name('color.create');
+        Route::post('/colors', 'store')->name('color.store');
+        Route::get('/colors/{color}/edit',  'edit')->name('color.edit');
+        Route::put('/colors/{color}/update',  'update')->name('color.update');
+        Route::get('/colors/{color}',  'delete')->name('color.delete');
+
+
+    });
+
+    //Slider
+    Route::controller(\App\Http\Controllers\Admin\SliderController::class)->group(function (){
+        Route::get('/sliders', 'index')->name('slider.index');
+        Route::get('/sliders/create', 'create')->name('slider.create');
+        Route::post('/sliders', 'store')->name('slider.store');
+
+        Route::get('/sliders/{slider}/edit',  'edit')->name('slider.edit');
+        Route::put('/sliders/{slider}/update',  'update')->name('slider.update');
+        Route::get('/sliders/{slider}',  'delete')->name('slider.delete');
     });
 
 });
+
+
+
+
+
+Auth::routes();
