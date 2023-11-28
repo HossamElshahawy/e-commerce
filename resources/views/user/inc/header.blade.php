@@ -55,7 +55,7 @@
                     <livewire:user.wishlist.count/>
                 </span>
             </a>
-            <a href="{{'cart'}}" class="btn border">
+            <a href="{{url('cart')}}" class="btn border">
                 <i class="fas fa-shopping-cart text-primary"></i>
                 <span class="badge">
                     <livewire:user.cart.count/>

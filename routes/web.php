@@ -25,8 +25,13 @@ route::get('home',[\App\Http\Controllers\User\IndexController::class,'index']);
 route::get('category/{category_slug}',[\App\Http\Controllers\User\IndexController::class,'productsRelatedToCategory'])->name('user.category');
 route::get('category/{category_slug}/{product_slug}',[\App\Http\Controllers\User\IndexController::class,'productSinglePage']);
 
-route::get('wishlist',[\App\Http\Controllers\User\WishlistController::class,'index']);
 
+Route::middleware(['auth'])->group(function (){
+    route::get('wishlist',[\App\Http\Controllers\User\WishlistController::class,'index']);
+    route::get('cart',[\App\Http\Controllers\User\CartController::class,'index']);
+
+
+});
 
 Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function (){
     Route::get('/dashboard', [App\Http\Controllers\Admin\DashboardController::class, 'index'])->name('admin.dashboard');

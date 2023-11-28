@@ -29,7 +29,6 @@
                         <td class="align-middle"><img src="{{asset($wishlist->product->productImages[0]->image)}}" alt="{{$wishlist->product->name}}" style="width: 50px;">
                             <a href="{{url('category/'.$wishlist->product->category->slug.'/'.$wishlist->product->slug)}}">
                             {{$wishlist->product->name}}</td>
-
                         </a>
                     @endif
                             <td class="align-middle">${{$wishlist->product->selling_price}}</td>
