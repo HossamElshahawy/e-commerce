@@ -90,7 +90,12 @@
                     </div>
                 </div>
             </div>
-            <button class="btn btn-primary px-3"><i class="fa fa-shopping-cart mr-1"></i> Add To Cart</button>
+            <button class="btn btn-primary px-3" type="button" wire:click="addToCart({{$product->id}})">
+                <i class="fa fa-shopping-cart mr-1"></i>
+                Add To Cart
+            </button>
+
+
             <button class="btn btn-primary px-3" wire:click="addToWishlist({{$product->id}})">
                 <span wire:loading.remove wire:target="addToWishlist">
                     <i class="fa fa-shopping-cart mr-3">
