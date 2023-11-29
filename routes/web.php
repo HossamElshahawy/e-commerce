@@ -85,6 +85,22 @@ Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function (){
         Route::get('/sliders/{slider}',  'delete')->name('slider.delete');
     });
 
+    //Orders
+    Route::controller(\App\Http\Controllers\Admin\OrderController::class)->group(function (){
+        Route::get('/orders', 'index')->name('order.index');
+        Route::get('/order/{order_id}', 'show')->name('order.show');
+        Route::put('/order/{order_id}', 'updateOrderStatus')->name('updateOrderStatus');
+        Route::get('/order/invoice/{order_id}/generate', 'invoiceDownload')->name('invoice.download');
+        Route::get('/order/invoice/{order_id}', 'showInvoice')->name('invoice.show');
+
+//        Route::get('/colors/create', 'create')->name('color.create');
+//        Route::post('/colors', 'store')->name('color.store');
+//        Route::get('/colors/{color}/edit',  'edit')->name('color.edit');
+//        Route::put('/colors/{color}/update',  'update')->name('color.update');
+//        Route::get('/colors/{color}',  'delete')->name('color.delete');
+
+    });
+
 });
 
 

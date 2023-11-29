@@ -74,6 +74,14 @@
                 </a>
             </li>
 
+            {{--orders--}}
+            <li class="nav-item">
+                <a href="{{route('order.index')}}" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Orders</p>
+                </a>
+            </li>
+
             {{--Color--}}
             <li class="nav-item">
                 <a href="{{route('color.index')}}" class="nav-link">
