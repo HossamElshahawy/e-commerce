@@ -7,7 +7,6 @@
 
 @include('user.inc.header')
 
-@include('user.inc.navbar')
 
 @yield('content')
 

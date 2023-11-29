@@ -3,6 +3,7 @@
     Hossam Store
 @endsection
 @section('content')
+    @include('user.inc.navbar')
 
     <!-- Page Header Start -->
     <div class="container-fluid bg-secondary mb-5">

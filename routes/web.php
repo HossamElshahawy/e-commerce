@@ -2,16 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
+
 
 Route::get('/home', function () {
     return view('welcome');
@@ -31,6 +22,8 @@ Route::middleware(['auth'])->group(function (){
     route::get('cart',[\App\Http\Controllers\User\CartController::class,'index']);
     route::get('checkout',[\App\Http\Controllers\User\CheckoutController::class,'index']);
 
+    route::get('orders',[\App\Http\Controllers\User\OrderController::class,'index']);
+    route::get('order/{id}',[\App\Http\Controllers\User\OrderController::class,'show']);
 
 });
 route::get('thank-you',[\App\Http\Controllers\User\IndexController::class,'thankYou']);

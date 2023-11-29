@@ -9,9 +9,7 @@ use Illuminate\Http\Request;
 class CheckoutController extends Controller
 {
     public function index(){
-        $categories = Category::with('products')
-            ->where('status','active')->get();
 
-        return view('user.pages.checkout',compact('categories'));
+        return view('user.pages.checkout');
     }
 }
