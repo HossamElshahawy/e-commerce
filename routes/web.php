@@ -20,7 +20,7 @@ Route::get('/home', function () {
 
 route::get('home',[\App\Http\Controllers\User\IndexController::class,'index']);
 
-//route::get('shop',[\App\Http\Controllers\User\IndexController::class,'allProducts']);
+route::get('shop',[\App\Http\Controllers\User\IndexController::class,'allProducts']);
 
 route::get('category/{category_slug}',[\App\Http\Controllers\User\IndexController::class,'productsRelatedToCategory'])->name('user.category');
 route::get('category/{category_slug}/{product_slug}',[\App\Http\Controllers\User\IndexController::class,'productSinglePage']);
@@ -29,9 +29,12 @@ route::get('category/{category_slug}/{product_slug}',[\App\Http\Controllers\User
 Route::middleware(['auth'])->group(function (){
     route::get('wishlist',[\App\Http\Controllers\User\WishlistController::class,'index']);
     route::get('cart',[\App\Http\Controllers\User\CartController::class,'index']);
+    route::get('checkout',[\App\Http\Controllers\User\CheckoutController::class,'index']);
 
 
 });
+route::get('thank-you',[\App\Http\Controllers\User\IndexController::class,'thankYou']);
+
 
 Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function (){
     Route::get('/dashboard', [App\Http\Controllers\Admin\DashboardController::class, 'index'])->name('admin.dashboard');
@@ -90,9 +93,6 @@ Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function (){
     });
 
 });
-
-
-
 
 
 Auth::routes();

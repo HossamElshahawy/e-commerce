@@ -25,4 +25,6 @@
     <link rel="stylesheet" href="//cdn.jsdelivr.xyz/npm/alertifyjs@1.13.1/build/css/alertify.min.css"/>
     <!-- Default theme alertify -->
     <link rel="stylesheet" href="//cdn.jsdelivr.xyz/npm/alertifyjs@1.13.1/build/css/themes/default.min.css"/>
+
+    @yield('css')
 </head>

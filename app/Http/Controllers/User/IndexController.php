@@ -24,12 +24,12 @@ class IndexController extends Controller
         return view('user.pages.home',compact('sliders','categories','trandyProducts'));
     }
 
-    public function allProducts(){
+//    public function allProducts(){
 //        $categories = Category::with('products')
 //            ->where('status','active')->get();
-//        $products = Product::where('status','active')->get();
+//        $products = Product::where('status','active')->pagina();
 //        return view('user.pages.shop',compact('products','categories'));
-    }
+//    }
 
     public function productsRelatedToCategory($category_slug){
         $categories = Category::with('products')
@@ -65,5 +65,11 @@ class IndexController extends Controller
             return redirect()->back();
         }
 
+    }
+
+    public function thankYou(){
+        $categories = Category::with('products')
+            ->where('status','active')->get();
+        return view('user.pages.thank-you',compact('categories'));
     }
 }

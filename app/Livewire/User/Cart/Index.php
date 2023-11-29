@@ -4,6 +4,7 @@ namespace App\Livewire\User\Cart;
 
 use App\Models\Cart;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redirect;
 use Livewire\Component;
 
 class Index extends Component
@@ -70,6 +71,13 @@ class Index extends Component
 
             session()->flash('message', 'Product Deleted Successfully');
         }
+    }
+    public function redirectToCheckout()
+    {
+        // Your logic to perform any necessary actions before redirection
+
+        // Redirect to the checkout page
+        return Redirect::to('/checkout');
     }
 
     public function render()

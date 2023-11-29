@@ -25,7 +25,7 @@
                 </thead>
                 <tbody class="align-middle">
                 @forelse($cart as $cartItem)
-                    @php $totalPrice = 0; @endphp
+                    @php $totalPrice = null; @endphp
                    @if($cartItem->product)
                 <tr>
                     @if($cartItem->product->productImages)
@@ -103,9 +103,9 @@
                 <div class="card-footer border-secondary bg-transparent">
                     <div class="d-flex justify-content-between mt-2">
                         <h5 class="font-weight-bold">Total</h5>
-                        <h5 class="font-weight-bold">${{$totalPrice}}</h5>
+                        <h5 class="font-weight-bold">$</h5>
                     </div>
-                    <button class="btn btn-block btn-primary my-3 py-3">Proceed To Checkout</button>
+                    <button wire:click="redirectToCheckout" class="btn btn-block btn-primary my-3 py-3">Proceed To Checkout</button>
                 </div>
             </div>
         </div>
