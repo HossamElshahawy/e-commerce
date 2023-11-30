@@ -2,8 +2,6 @@
 
 use Illuminate\Support\Facades\Route;
 
-
-
 Route::get('/home', function () {
     return view('welcome');
 });
@@ -15,6 +13,7 @@ route::get('shop',[\App\Http\Controllers\User\IndexController::class,'allProduct
 
 route::get('category/{category_slug}',[\App\Http\Controllers\User\IndexController::class,'productsRelatedToCategory'])->name('user.category');
 route::get('category/{category_slug}/{product_slug}',[\App\Http\Controllers\User\IndexController::class,'productSinglePage']);
+
 
 
 Route::middleware(['auth'])->group(function (){
@@ -31,6 +30,8 @@ route::get('thank-you',[\App\Http\Controllers\User\IndexController::class,'thank
 
 Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function (){
     Route::get('/dashboard', [App\Http\Controllers\Admin\DashboardController::class, 'index'])->name('admin.dashboard');
+    Route::get('/setting', [App\Http\Controllers\Admin\SettingController::class, 'index'])->name('admin.setting');
+    Route::post('/setting', [App\Http\Controllers\Admin\SettingController::class, 'store'])->name('admin.settingSaveUpdate');
 
     //category
     Route::get('/category', [App\Http\Controllers\Admin\CategoryController::class, 'index'])->name('category.index');

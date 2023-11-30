@@ -98,6 +98,14 @@
                 </a>
             </li>
 
+            {{--Setting--}}
+            <li class="nav-item">
+                <a href="{{route('admin.setting')}}" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Home Setting</p>
+                </a>
+            </li>
+
             {{--logout--}}
             <li class="nav-item">
                 <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">

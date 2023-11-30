@@ -30,10 +30,19 @@
 
                         <a href="contact.html" class="nav-item nav-link">Contact</a>
                     </div>
-                    <div class="navbar-nav ml-auto py-0">
-                        <a href="" class="nav-item nav-link">Login</a>
-                        <a href="" class="nav-item nav-link">Register</a>
-                    </div>
+                    @if (Route::has('login'))
+                        <div class="navbar-nav ml-auto py-0">
+                            @auth
+                                <a href="" class="nav-item nav-link">Profile</a>
+                            @else
+                                <a href="{{ route('login') }}" class="nav-item nav-link">login</a>
+
+                                @if (Route::has('register'))
+                                    <a href="{{ route('register') }}" class="nav-item nav-link">Register</a>
+                                @endif
+                            @endauth
+                        </div>
+                    @endif
                 </div>
             </nav>
         </div>
