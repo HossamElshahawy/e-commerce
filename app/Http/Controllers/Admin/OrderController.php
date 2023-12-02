@@ -3,10 +3,12 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Mail\InvoiceOrderMailable;
 use App\Models\Order;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Barryvdh\DomPDF\Facade\Pdf;
+use Illuminate\Support\Facades\Mail;
 
 class OrderController extends Controller
 {
@@ -59,5 +61,18 @@ class OrderController extends Controller
         $pdf = Pdf::loadView('admin.invoice.show_invoice', $data);
         $todayDate = Carbon::now()->format('Y-m-d');
         return $pdf->download('invoice-'.$order->id.'-'.$todayDate.'.pdf');
+    }
+
+    public function mailInvoice(int $orderId){
+
+        try {
+            $order = Order::findOrFail($orderId);
+
+            Mail::to($order->email)->send(new InvoiceOrderMailable($order));
+            return redirect('admin/order/'.$orderId)->with('message','Invoice Mail has been sent to '.$order->email);
+
+        }catch (\Exception $e){
+            return redirect('admin/order/'.$orderId)->with('error','SomeThing Went Wrong');
+        }
     }
 }

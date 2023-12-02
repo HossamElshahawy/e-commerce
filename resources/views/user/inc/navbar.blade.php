@@ -26,14 +26,14 @@
                 <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                     <div class="navbar-nav mr-auto py-0">
                         <a href="{{url('home')}}" class="nav-item nav-link">Home</a>
-                        <a href="shop.html" class="nav-item nav-link">Shop</a>
+                        <a href="{{url('shop')}}" class="nav-item nav-link">Shop</a>
 
                         <a href="contact.html" class="nav-item nav-link">Contact</a>
                     </div>
                     @if (Route::has('login'))
                         <div class="navbar-nav ml-auto py-0">
                             @auth
-                                <a href="" class="nav-item nav-link">Profile</a>
+                                <a href="{{url('profile')}}" class="nav-item nav-link">Profile</a>
                             @else
                                 <a href="{{ route('login') }}" class="nav-item nav-link">login</a>
 

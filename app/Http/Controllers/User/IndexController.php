@@ -69,6 +69,16 @@ class IndexController extends Controller
 
     }
 
+    public function searchProducts(Request $request){
+        if ($request->search){
+            $searchProducts = Product::where('name','LIKE','%'.$request->search.'%')->latest()->paginate(7);
+            return view('user.pages.search_product',compact('searchProducts'));
+        }else{
+            return redirect()->back()->with('message','No Product Found');
+        }
+
+
+    }
     public function thankYou(){
         $categories = Category::with('products')
             ->where('status','active')->get();

@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Models\Category;
 use App\Models\Setting;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\View;
@@ -26,6 +27,9 @@ class AppServiceProvider extends ServiceProvider
 
         $websiteSetting = Setting::first();
         View::share('appSetting',$websiteSetting);
+
+        $categories = Category::all();
+        View::share('categories',$categories);
 
     }
 }

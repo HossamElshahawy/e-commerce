@@ -14,7 +14,13 @@ route::get('shop',[\App\Http\Controllers\User\IndexController::class,'allProduct
 route::get('category/{category_slug}',[\App\Http\Controllers\User\IndexController::class,'productsRelatedToCategory'])->name('user.category');
 route::get('category/{category_slug}/{product_slug}',[\App\Http\Controllers\User\IndexController::class,'productSinglePage']);
 
+route::get('search',[\App\Http\Controllers\User\IndexController::class,'searchProducts']);
 
+route::get('profile',[\App\Http\Controllers\User\ProfileController::class,'index']);
+route::put('profile/update',[\App\Http\Controllers\User\ProfileController::class,'update']);
+
+Route::get('change-password', [\App\Http\Controllers\User\ProfileController::class, 'passwordPage']);
+Route::post('change-password', [\App\Http\Controllers\User\ProfileController::class, 'changePassword']);
 
 Route::middleware(['auth'])->group(function (){
     route::get('wishlist',[\App\Http\Controllers\User\WishlistController::class,'index']);
@@ -23,6 +29,7 @@ Route::middleware(['auth'])->group(function (){
 
     route::get('orders',[\App\Http\Controllers\User\OrderController::class,'index']);
     route::get('order/{id}',[\App\Http\Controllers\User\OrderController::class,'show']);
+
 
 });
 route::get('thank-you',[\App\Http\Controllers\User\IndexController::class,'thankYou']);
@@ -93,13 +100,17 @@ Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function (){
         Route::put('/order/{order_id}', 'updateOrderStatus')->name('updateOrderStatus');
         Route::get('/order/invoice/{order_id}/generate', 'invoiceDownload')->name('invoice.download');
         Route::get('/order/invoice/{order_id}', 'showInvoice')->name('invoice.show');
+        route::get('/order/invoice/{order_id}/mail',[\App\Http\Controllers\Admin\OrderController::class,'mailInvoice'])->name('invoice.mail');
+    });
 
-//        Route::get('/colors/create', 'create')->name('color.create');
-//        Route::post('/colors', 'store')->name('color.store');
-//        Route::get('/colors/{color}/edit',  'edit')->name('color.edit');
-//        Route::put('/colors/{color}/update',  'update')->name('color.update');
-//        Route::get('/colors/{color}',  'delete')->name('color.delete');
+    Route::controller(\App\Http\Controllers\Admin\UserController::class)->group(function (){
+        Route::get('/users', 'index')->name('user.index');
+        Route::get('/users/create', 'create')->name('user.create');
+        Route::post('/users', 'store')->name('user.store');
 
+        Route::get('/users/{user}/edit',  'edit')->name('user.edit');
+        Route::put('/users/{user}/update',  'update')->name('user.update');
+        Route::get('/users/{userId}',  'delete')->name('user.delete');
     });
 
 });

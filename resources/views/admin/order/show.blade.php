@@ -18,7 +18,9 @@
         <div class="mb-3">
             <a href="{{ route('order.index') }}" class="btn btn-danger btn-sm float-right">Back</a>
             <a href="{{ route('invoice.show', $order->id) }}" class="btn btn-warning btn-sm float-right mx-2" target="_blank">View Invoice</a>
-            <a href="{{ route('invoice.download', $order->id) }}" class="btn btn-primary btn-sm float-right">Download Invoice</a>
+            <a href="{{ route('invoice.download', $order->id) }}" class="btn btn-primary btn-sm float-right mx-2">Download Invoice</a>
+            <a href="{{ route('invoice.mail',$order->id) }}" class="btn btn-primary btn-sm float-right">Send Invoice Via Mail</a>
+
         </div>
 
         <h4 class="text-primary">
